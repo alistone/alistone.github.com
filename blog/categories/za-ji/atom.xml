@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 杂记 | My Octopress Blog]]></title>
+  <link href="http://alistone.github.io/blog/categories/za-ji/atom.xml" rel="self"/>
+  <link href="http://alistone.github.io/"/>
+  <updated>2014-02-18T19:58:50+08:00</updated>
+  <id>http://alistone.github.io/</id>
+  <author>
+    <name><![CDATA[alistone]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Mac下搭建github博客简记]]></title>
+    <link href="http://alistone.github.io/blog/2014/02/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2%E7%AE%80%E8%AE%B0/"/>
+    <updated>2014-02-18T19:56:50+08:00</updated>
+    <id>http://alistone.github.io/blog/2014/02/18/mac下搭建github博客简记</id>
+    <content type="html"><![CDATA[<h1>mac下搭建github博客简记</h1>
+
+<p>本文是博客搭建流程极简版，主要目的是记录下来给自己备忘，具体搭建流程请参考<strong>破船之家</strong><a href="http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/">[1]</a>、<a href="http://beyondvincent.com/blog/2013/07/27/107-hello-page-of-github/">[2]</a></p>
+
+<p>1、安装Ruby</p>
+
+<p>安装RVM</p>
+
+<pre><code>curl -L https://get.rvm.io | bash -s stable --ruby
+</code></pre>
+
+<p>安装最新版本的Ruby</p>
+
+<pre><code>rvm list known
+rvm install latest-version
+rvm use latest-version
+rvm rubygems latest
+</code></pre>
+
+<p>2、安装Octopress</p>
+
+<p>先将octopress从github上clone到本地</p>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+</code></pre>
+
+<p>安装相关依赖</p>
+
+<pre><code>cd octopress
+gem install bundler
+bundler install
+</code></pre>
+
+<p>安装Octopress主题</p>
+
+<pre><code>rake install
+</code></pre>
+
+<p>3、配置Octopress</p>
+
+<p>略。</p>
+
+<p>4、部署博客到github</p>
+
+<p>在github创建username.github.com的repo，然后在Octopress主目录初始化仓库配置</p>
+
+<pre><code>rake setup_github_pages
+</code></pre>
+
+<p>创建新博客</p>
+
+<pre><code>rake new_post["title"]
+</code></pre>
+
+<p>找到创建的博客文件添加具体内容，然后使用下面命令发布</p>
+
+<pre><code>rake generate
+rake deploy
+</code></pre>
+
+<p>以上步骤均成功后访问username.github.com可以看到正常页面。</p>
+
+<p>5、解析godaddy域名到github博客</p>
+
+<p>在godaddy上添加A记录<code>@ 204.232.175.78</code>，再添加CNAME记录<code>http username.github.com</code>。另外github仓库下source目录新建CNAME文件，内容为要解析的域名。</p>
+]]></content>
+  </entry>
+  
+</feed>
