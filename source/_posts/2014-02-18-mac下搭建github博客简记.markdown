@@ -49,7 +49,7 @@ mac下搭建github博客简记
 
 5、解析godaddy域名到github博客
 
-在godaddy上添加A记录`@ 204.232.175.78`，再添加CNAME记录`http username.github.com`。另外github仓库下source目录新建CNAME文件，内容为要解析的域名。
+在godaddy上删除原有A记录新加一条A记录`@ 204.232.175.78`，再添加CNAME记录`http username.github.com`。另外github仓库下source目录新建CNAME文件，内容为要解析的域名。
 
 [1]: http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/
 [2]: http://beyondvincent.com/blog/2013/07/27/107-hello-page-of-github/
