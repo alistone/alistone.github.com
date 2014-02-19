@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: 杂记 | My Octopress Blog]]></title>
+  <title><![CDATA[Category: 杂记 | 微风流云的Blog]]></title>
   <link href="http://alistone.github.io/blog/categories/za-ji/atom.xml" rel="self"/>
   <link href="http://alistone.github.io/"/>
-  <updated>2014-02-18T19:58:50+08:00</updated>
+  <updated>2014-02-19T13:10:14+08:00</updated>
   <id>http://alistone.github.io/</id>
   <author>
     <name><![CDATA[alistone]]></name>
@@ -82,7 +82,7 @@ rake deploy
 
 <p>5、解析godaddy域名到github博客</p>
 
-<p>在godaddy上添加A记录<code>@ 204.232.175.78</code>，再添加CNAME记录<code>http username.github.com</code>。另外github仓库下source目录新建CNAME文件，内容为要解析的域名。</p>
+<p>在godaddy上删除原有A记录新加一条A记录<code>@ 204.232.175.78</code>，再添加CNAME记录<code>http username.github.com</code>。另外github仓库下source目录新建CNAME文件，内容为要解析的域名。</p>
 ]]></content>
   </entry>
   
