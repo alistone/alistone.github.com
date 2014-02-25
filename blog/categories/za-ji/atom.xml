@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 杂记 | 微风流云的Blog]]></title>
   <link href="http://alistone.github.io/blog/categories/za-ji/atom.xml" rel="self"/>
   <link href="http://alistone.github.io/"/>
-  <updated>2014-02-19T13:10:14+08:00</updated>
+  <updated>2014-02-25T16:11:01+08:00</updated>
   <id>http://alistone.github.io/</id>
   <author>
     <name><![CDATA[alistone]]></name>
@@ -18,11 +18,9 @@
     <link href="http://alistone.github.io/blog/2014/02/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2%E7%AE%80%E8%AE%B0/"/>
     <updated>2014-02-18T19:56:50+08:00</updated>
     <id>http://alistone.github.io/blog/2014/02/18/mac下搭建github博客简记</id>
-    <content type="html"><![CDATA[<h1>mac下搭建github博客简记</h1>
+    <content type="html"><![CDATA[<p>本文是博客搭建流程极简版，主要目的是记录下来给自己备忘，具体搭建流程请参考<strong>破船之家</strong><a href="http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/">[1]</a>、<a href="http://beyondvincent.com/blog/2013/07/27/107-hello-page-of-github/">[2]</a></p>
 
-<p>本文是博客搭建流程极简版，主要目的是记录下来给自己备忘，具体搭建流程请参考<strong>破船之家</strong><a href="http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/">[1]</a>、<a href="http://beyondvincent.com/blog/2013/07/27/107-hello-page-of-github/">[2]</a></p>
-
-<p>1、安装Ruby</p>
+<h3>1、安装Ruby</h3>
 
 <p>安装RVM</p>
 
@@ -37,7 +35,7 @@ rvm use latest-version
 rvm rubygems latest
 </code></pre>
 
-<p>2、安装Octopress</p>
+<h3>2、安装Octopress</h3>
 
 <p>先将octopress从github上clone到本地</p>
 
@@ -56,11 +54,11 @@ bundler install
 <pre><code>rake install
 </code></pre>
 
-<p>3、配置Octopress</p>
+<h3>3、配置Octopress</h3>
 
 <p>略。</p>
 
-<p>4、部署博客到github</p>
+<h3>4、部署博客到github</h3>
 
 <p>在github创建username.github.com的repo，然后在Octopress主目录初始化仓库配置</p>
 
@@ -80,7 +78,7 @@ rake deploy
 
 <p>以上步骤均成功后访问username.github.com可以看到正常页面。</p>
 
-<p>5、解析godaddy域名到github博客</p>
+<h3>5、解析godaddy域名到github博客</h3>
 
 <p>在godaddy上删除原有A记录新加一条A记录<code>@ 204.232.175.78</code>，再添加CNAME记录<code>http username.github.com</code>。另外github仓库下source目录新建CNAME文件，内容为要解析的域名。</p>
 ]]></content>

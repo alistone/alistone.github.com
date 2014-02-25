@@ -9,7 +9,8 @@
   <meta name="author" content="alistone">
 
   
-  <meta name="description" content="mac下搭建github博客简记 本文是博客搭建流程极简版，主要目的是记录下来给自己备忘，具体搭建流程请参考破船之家[1]、[2] 1、安装Ruby 安装RVM curl -L https://get.rvm.io | bash -s stable --ruby 安装最新版本的Ruby rvm &hellip;">
+  <meta name="description" content="本文是博客搭建流程极简版，主要目的是记录下来给自己备忘，具体搭建流程请参考破船之家[1]、[2] 1、安装Ruby 安装RVM curl -L https://get.rvm.io | bash -s stable --ruby 安装最新版本的Ruby rvm list known
+rvm &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,11 +92,9 @@
   </header>
 
 
-<div class="entry-content"><h1>mac下搭建github博客简记</h1>
+<div class="entry-content"><p>本文是博客搭建流程极简版，主要目的是记录下来给自己备忘，具体搭建流程请参考<strong>破船之家</strong><a href="http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/">[1]</a>、<a href="http://beyondvincent.com/blog/2013/07/27/107-hello-page-of-github/">[2]</a></p>
 
-<p>本文是博客搭建流程极简版，主要目的是记录下来给自己备忘，具体搭建流程请参考<strong>破船之家</strong><a href="http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/">[1]</a>、<a href="http://beyondvincent.com/blog/2013/07/27/107-hello-page-of-github/">[2]</a></p>
-
-<p>1、安装Ruby</p>
+<h3>1、安装Ruby</h3>
 
 <p>安装RVM</p>
 
@@ -110,7 +109,7 @@ rvm use latest-version
 rvm rubygems latest
 </code></pre>
 
-<p>2、安装Octopress</p>
+<h3>2、安装Octopress</h3>
 
 <p>先将octopress从github上clone到本地</p>
 
@@ -129,11 +128,11 @@ bundler install
 <pre><code>rake install
 </code></pre>
 
-<p>3、配置Octopress</p>
+<h3>3、配置Octopress</h3>
 
 <p>略。</p>
 
-<p>4、部署博客到github</p>
+<h3>4、部署博客到github</h3>
 
 <p>在github创建username.github.com的repo，然后在Octopress主目录初始化仓库配置</p>
 
@@ -153,7 +152,7 @@ rake deploy
 
 <p>以上步骤均成功后访问username.github.com可以看到正常页面。</p>
 
-<p>5、解析godaddy域名到github博客</p>
+<h3>5、解析godaddy域名到github博客</h3>
 
 <p>在godaddy上删除原有A记录新加一条A记录<code>@ 204.232.175.78</code>，再添加CNAME记录<code>http username.github.com</code>。另外github仓库下source目录新建CNAME文件，内容为要解析的域名。</p>
 </div>
@@ -200,6 +199,8 @@ rake deploy
     <p class="meta">
       
       
+        <a class="basic-alignment right" href="/blog/2014/02/25/gcdxue-xi-bi-ji/" title="Next Post: GCD学习笔记">GCD学习笔记 &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -231,6 +232,10 @@ var duoshuoQuery = {short_name:"alistone"};
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/02/25/gcdxue-xi-bi-ji/">GCD学习笔记</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/02/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2%E7%AE%80%E8%AE%B0/">Mac下搭建github博客简记</a>
