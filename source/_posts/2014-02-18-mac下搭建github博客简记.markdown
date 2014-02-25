@@ -6,12 +6,9 @@ comments: true
 categories: 杂记
 ---
 
-mac下搭建github博客简记
-===========================
-
 本文是博客搭建流程极简版，主要目的是记录下来给自己备忘，具体搭建流程请参考**破船之家**[\[1\]][1]、[\[2\]][2]
 
-1、安装Ruby
+###1、安装Ruby
 
 安装RVM
     curl -L https://get.rvm.io | bash -s stable --ruby
@@ -21,7 +18,7 @@ mac下搭建github博客简记
     rvm use latest-version
     rvm rubygems latest
 
-2、安装Octopress
+###2、安装Octopress
 
 先将octopress从github上clone到本地
     git clone git://github.com/imathis/octopress.git octopress
@@ -32,11 +29,11 @@ mac下搭建github博客简记
 安装Octopress主题
     rake install
 
-3、配置Octopress
+###3、配置Octopress
 
 略。
 
-4、部署博客到github
+###4、部署博客到github
 
 在github创建username.github.com的repo，然后在Octopress主目录初始化仓库配置
     rake setup_github_pages
@@ -47,7 +44,7 @@ mac下搭建github博客简记
     rake deploy
 以上步骤均成功后访问username.github.com可以看到正常页面。
 
-5、解析godaddy域名到github博客
+###5、解析godaddy域名到github博客
 
 在godaddy上删除原有A记录新加一条A记录`@ 204.232.175.78`，再添加CNAME记录`http username.github.com`。另外github仓库下source目录新建CNAME文件，内容为要解析的域名。
 
