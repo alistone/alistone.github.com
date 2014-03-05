@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | 微风流云的Blog]]></title>
   <link href="http://alistone.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://alistone.github.io/"/>
-  <updated>2014-03-05T11:04:44+08:00</updated>
+  <updated>2014-03-05T11:33:52+08:00</updated>
   <id>http://alistone.github.io/</id>
   <author>
     <name><![CDATA[alistone]]></name>
@@ -31,20 +31,20 @@
 </ul>
 
 
-<p>![] (/images/2014/03/1.png)</p>
+<p style="text-align:center;"><img src="/images/2014/03/1.png" height="390" width="380" alt="" /></p>
 
 <ul>
 <li><strong>陀螺仪</strong>分别测量沿X、Y、Z三个轴的旋转速度，并通过右手法则判断旋转速度的正负，手机上三个轴的指向以及正负旋转方向参见下图。举例来说当手机水平纵向放置时（Home按钮在底部），翘起头部则在X轴有一个正的旋转速度。另外框架里旋转速度的单位为旋转的弧度每秒。</li>
 </ul>
 
 
-<p>![] (/images/2014/03/2.png)</p>
+<p style="text-align:center;"><img src="/images/2014/03/2.png" height="401" width="345" alt="" /></p>
 
 <h3>Core Motion Framework介绍</h3>
 
 <p>Core Motion Framework的整体结构见下图，其中CMMotionManager是框架的管理类，提供创建实例、设置数据采集频率、开启数据采集、关闭数据采集等等功能。</p>
 
-<p>![] (/images/2014/03/3.png)</p>
+<p style="text-align:center;"><img src="/images/2014/03/3.png" height="374" width="432" alt="" /></p>
 
 <p>CMAccelerometerData实际包含一个结构体acceleration(类型：CMAcceleration)，提供三轴加速度。</p>
 
@@ -113,12 +113,12 @@
 <strong>Push：</strong>App指定数据采集间隔时间并实现处理Motion数据的block，Core Motion会将每次采集的数据传递给block并将block添加到你给定的NSOperationQueue中执行。<br/>
 <strong>Pull和Push方式各自适用的场景见下表：</strong></p>
 
-<p>![] (/images/2014/03/4.png)</p>
+<p><img src="/images/2014/03/4.png" alt="" /></p>
 
 <p><strong>3、设置合适的数据采集间隔：</strong><br/>
 在满足App需求的前提下应该设置尽量大的数据采集间隔，数据采集的间隔越大传递给App的事件越少，这样可以节省手机电量。下表列举了通常使用的数据采集频率以及在这些频率下可以实现的功能：</p>
 
-<p>![] (/images/2014/03/5.png)</p>
+<p><img src="/images/2014/03/5.png" alt="" /></p>
 
 <p><strong>4、即时关闭数据采集功能：</strong><br/>
 当App不需要再采集Motion数据时应该即时关闭采集功能，这样可以节省手机电量。 <br/>
