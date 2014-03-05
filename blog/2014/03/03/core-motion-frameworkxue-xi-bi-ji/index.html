@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>微风流云的Blog</title>
+  <title>Core Motion Framework学习笔记 - 微风流云的Blog</title>
   <meta name="author" content="alistone">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://alistone.github.io">
+  <link rel="canonical" href="http://alistone.github.io/blog/2014/03/03/core-motion-frameworkxue-xi-bi-ji">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="微风流云的Blog" type="application/atom+xml">
@@ -63,15 +63,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/03/03/core-motion-frameworkxue-xi-bi-ji/">Core Motion Framework学习笔记</a></h1>
+      <h1 class="entry-title">Core Motion Framework学习笔记</h1>
     
     
       <p class="meta">
@@ -94,7 +91,7 @@
   </header>
 
 
-  <div class="entry-content"><p>本文是个人学习Core Motion Framework后所做的笔记，主要关注加速度传感器和陀螺仪数据，其他方面暂未涉及。</p>
+<div class="entry-content"><p>本文是个人学习Core Motion Framework后所做的笔记，主要关注加速度传感器和陀螺仪数据，其他方面暂未涉及。</p>
 
 <h3>Core Motion Framework简介</h3>
 
@@ -244,119 +241,16 @@
 </ul>
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/25/gcdxue-xi-bi-ji/">GCD学习笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">alistone</span></span>
 
-<time datetime="2014-02-25T13:58:49+08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>本文是个人学习GCD后所做的笔记，如有错漏欢迎指正。</p>
-
-<h3>GCD简介</h3>
-
-<p>GCD（Grand Central Dispatch）是一种简单易用的异步执行任务的技术，一般来说GCD会将任务封装到block中然后提交给dispatch queue，dispatch queue会根据任务提交的顺序串行或者并行的执行任务。</p>
-
-<h3>Dispatch Queue的分类</h3>
-
-<ul>
-<li>Serial Dispatch Queue：添加到queue中的block按FIFO的顺序串行处理。</li>
-<li>Concurrent Dispatch Queue：添加到queue中的block按FIFO顺序调度处理，前一个block调度后无须等block执行完毕就可以调度下一个block，所以不同的block是并发执行的，具体并发执行的线程数GCD会根据系统负载自动调整。</li>
-</ul>
-
-
-<h3>Main Dispatch Queue和Global Dispatch Queue</h3>
-
-<ul>
-<li>Main Dispatch Queue：通过<code>dispatch_get_main_queue()</code>获取，在主线程中执行，属于Serial Dispatch Queue。</li>
-<li>Global Dispatch Queue：通过<code>dispatch_get_global_queue(priority,0)</code>获取，属于全局的Concurrent Dispatch Queue，其中priority指定queue的优先级，优先级高的queue中的block会优先调度。</li>
-</ul>
-
-
-<h3>自定义Dispatch Queue</h3>
-
-<ul>
-<li>通过<code>dispatch_queue_t queue = dispatch_queue_create("queueName", attr);</code>创建自定义dispatch queue，attr为NULL或DISPATCH_QUEUE_SERIAL则创建的是Serial Dispatch Queue，attr为DISPATCH_QUEUE_CONCURRENT则创建的是Concurrent Dispatch Queue。自定义的dispatch queue需要在结束时调用<code>dispatch_release(queue)</code>释放。</li>
-<li>自定义dispatch queue的优先级相当于DISPATCH_QUEUE_PRIORITY_DEFAULT,使用<code>dispatch_set_target_queue(queue,globalQueue)</code>可以将queue设置成与globalQueue相同优先级。</li>
-</ul>
-
-
-<h3>GCD相关的API</h3>
-
-<ul>
-<li><code>dispatch_sync(queue,block)</code>：<br/>
-将block同步添加到queue中，并等待block执行完毕再返回。慎用这个方法因为容易引起死锁，比如在主线程中调用dispatch_sync(dispatch_get_main_queue(),^{});</li>
-<li><code>dispatch_async(queue,block)</code>：<br/>
-将block异步添加到queue中并直接返回，无须等待。</li>
-<li><code>dispatch_after(delayTime,queue,block)</code>：<br/>
-在delayTime后将block添加到queue中执行。</li>
-<li><code>dispatch_once(&amp;onceToken,block)</code>：<br/>
-保证应用程序中只执行一次block。</li>
-<li><code>dispatch_barrier_sync(queue,block)</code>和<code>dispatch_barrier_async(queue,block)</code>：<br/>
-类似于dispatch_sync和dispatch_async添加block到queue中，只是这个block被标记为barrier，意思是barrier前添加的所有block执行完毕后才执行barrier，barrier执行完毕后才执行后面添加的block。</li>
-<li><code>dispatch_suspend(queue)</code>和<code>dispatch_resume(queue)</code>：<br/>
-挂起和恢复指定queue，对queue中已经执行的block没影响。</li>
-<li><code>dispatch_apply(count,queue,^(size_t idx){})</code>：<br/>
-将block重复添加到queue中count次，block有一个参数指明重复次数，取值为0~count-1，该方法需要等所有block执行完毕才返回。</li>
-<li><p>dispatch_group：</p>
-
-<pre><code>  dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0); 
-  dispatch_group_t group = dispatch_group_create(); 
-  dispatch_group_async(group, queue, block1); 
-  dispatch_group_async(group, queue, block2); 
-  dispatch_group_async(group, queue, block3); 
-  dispatch_group_notify(group, queue, block4); 
-  long result = dispatch_group_wait(group,timeout);
-</code></pre>
-
-<p><code>dispatch_group_notify(group,queue,block4)</code>会等到queue中所有block全部执行完毕后再异步添加block4到queue中，这样就保证了block4在block1、block2、block3全部执行完毕后再执行。
-<code>dispatch_group_wait(group,timeout)</code>会同步等待group中所有block执行完毕，或者等到指定timeout时间为止，返回result为0则表示所有block全部执行完毕，非0则表示还有block在执行。</p></li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/18/mac%E4%B8%8B%E6%90%AD%E5%BB%BAgithub%E5%8D%9A%E5%AE%A2%E7%AE%80%E8%AE%B0/">Mac下搭建github博客简记</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -368,89 +262,56 @@
   
 
 
-<time datetime="2014-02-18T19:56:50+08:00" pubdate data-updated="true">Feb 18<span>th</span>, 2014</time>
-        
-      </p>
+<time datetime="2014-03-03T15:22:55+08:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>iOS</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>本文是博客搭建流程极简版，主要目的是记录下来给自己备忘，具体搭建流程请参考<strong>破船之家</strong><a href="http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/">[1]</a>、<a href="http://beyondvincent.com/blog/2013/07/27/107-hello-page-of-github/">[2]</a></p>
-
-<h3>1、安装Ruby</h3>
-
-<p>安装RVM</p>
-
-<pre><code>curl -L https://get.rvm.io | bash -s stable --ruby
-</code></pre>
-
-<p>安装最新版本的Ruby</p>
-
-<pre><code>rvm list known
-rvm install latest-version
-rvm use latest-version
-rvm rubygems latest
-</code></pre>
-
-<h3>2、安装Octopress</h3>
-
-<p>先将octopress从github上clone到本地</p>
-
-<pre><code>git clone git://github.com/imathis/octopress.git octopress
-</code></pre>
-
-<p>安装相关依赖</p>
-
-<pre><code>cd octopress
-gem install bundler
-bundler install
-</code></pre>
-
-<p>安装Octopress主题</p>
-
-<pre><code>rake install
-</code></pre>
-
-<h3>3、配置Octopress</h3>
-
-<p>略。</p>
-
-<h3>4、部署博客到github</h3>
-
-<p>在github创建username.github.com的repo，然后在Octopress主目录初始化仓库配置</p>
-
-<pre><code>rake setup_github_pages
-</code></pre>
-
-<p>创建新博客</p>
-
-<pre><code>rake new_post["title"]
-</code></pre>
-
-<p>找到创建的博客文件添加具体内容，然后使用下面命令发布</p>
-
-<pre><code>rake generate
-rake deploy
-</code></pre>
-
-<p>以上步骤均成功后访问username.github.com可以看到正常页面。</p>
-
-<h3>5、解析godaddy域名到github博客</h3>
-
-<p>在godaddy上删除原有A记录新加一条A记录<code>@ 204.232.175.78</code>，再添加CNAME记录<code>http username.github.com</code>。另外github仓库下source目录新建CNAME文件，内容为要解析的域名。</p>
+      <div class="sharing">
+  
+  
+  
 </div>
-  
-  
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/02/25/gcdxue-xi-bi-ji/" title="Previous Post: GCD学习笔记">&laquo; GCD学习笔记</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"alistone"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -478,6 +339,7 @@ rake deploy
 
   
 </aside>
+
 
     </div>
   </div>
